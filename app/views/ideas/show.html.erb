@@ -1,0 +1,73 @@
+<h2><%= @idea.title %></h2>
+
+<p><%= @idea.description %></p>
+
+<p>By <%= @idea.user&.full_name || "[Deleted]" %></p>
+
+<% if user_signed_in? && can?(:crud, @idea) %>
+  <div>
+    <%= link_to(
+      "Edit",
+      edit_idea_path(@idea.id),
+    ) %>
+    
+    <%= link_to(
+      "Delete",
+      idea_path(@idea.id),
+      method: :delete,
+      data: { confirm: "Are you sure?"}
+    ) %>
+  </div>
+<% end %>
+
+<h2>Reviews</h2>
+
+<% if user_signed_in? %>
+  <%= render "reviews/form" %>
+<% end %>
+
+<ul class="review-list">
+  <% @reviews.each do |review| %>
+    <li>
+      <p>
+        <strong>
+          <%= review.user&.full_name || "[Deleted]" %> responded:
+        </strong> <br />
+        <%= review.body %>
+
+        <br />
+        <% if user_signed_in? %>
+          <% if can?(:update, review) %>
+            <small>
+              <%= link_to(
+                "Edit",
+                edit_review_path(review),
+              ) %>
+            </small>
+          <% end %>
+
+          <% if can?(:delete, review) %>
+            <small>
+              <%= link_to(
+                "Delete",
+                review_path(review),
+                method: :delete,
+                data: { confirm: "Are you sure?" }
+              ) %>
+            </small>
+            •
+          <% end %>
+        <% end %>
+        <small>
+          Reviewed <%= time_ago_in_words(review.created_at) %> ago
+        </small>
+        <% if review.edited? %>
+          •
+          <small>
+            Last edited <%= time_ago_in_words(review.updated_at) %> ago
+          </small>
+        <% end %>
+      </p>
+    </li>
+  <% end %>
+</ul>

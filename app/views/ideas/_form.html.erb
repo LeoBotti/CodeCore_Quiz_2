@@ -1,0 +1,19 @@
+<%= form_for @idea do |f| %>
+  <% if @idea.errors.present? %>
+    <p>
+      <%= @idea.errors.full_messages.join(", ") %>
+    </p>
+  <% end %>
+
+  <div>
+    <%= f.label :title %> <br />
+    <%= f.text_field :title %>
+  </div>
+
+  <div>
+    <%= f.label :description %> <br />
+    <%= f.text_area :description, cols: 60, rows: 5 %>
+  </div>
+
+  <%= f.submit %>
+<% end %>
