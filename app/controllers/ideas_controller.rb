@@ -53,7 +53,7 @@ class IdeasController < ApplicationController
   end
 
   def authorize_user!
-    unless can?(:crud, @question)
+    unless can?(:crud, @idea)
       flash[:danger] = "Access Denied"
       redirect_to root_path
     end
