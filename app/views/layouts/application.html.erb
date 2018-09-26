@@ -11,31 +11,30 @@
 
   <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="#">Idea Factory</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Ideas Factory</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-              <%= link_to("Ideas", ideas_path, class: "nav-item nav-link") %>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <%= link_to("Ideas", ideas_path, class: "nav-item nav-link") %>
 
-              <% if user_signed_in? %>
-                <%= link_to("New Idea", new_idea_path, class: "nav-item nav-link") %>
-              <% end %>
+            <% if user_signed_in? %>
+              <%= link_to("New Idea", new_idea_path, class: "nav-item nav-link") %>
+            <% end %>
 
-              <% if user_signed_in? %>
-                <span class="navbar-text">Hello, <%= current_user.first_name %></span>
-                <%= link_to("Sign out", session_path, method: :delete, class: "nav-item nav-link") %>
-              <% else %>
-                <%= link_to("Sign In", new_session_path, class: "nav-item nav-link") %>
-                <%= link_to("Sign Up", new_user_path, class: "nav-item nav-link") %>
-              <% end %>
-            </div>
+            <% if user_signed_in? %>
+              <span class="navbar-text">Hello, <%= current_user.first_name %></span>
+              <%= link_to("Sign out", session_path, method: :delete, class: "nav-item nav-link") %>
+            <% else %>
+              <%= link_to("Sign In", new_session_path, class: "nav-item nav-link") %>
+              <%= link_to("Sign Up", new_user_path, class: "nav-item nav-link") %>
+            <% end %>
           </div>
-
-        </nav>
+        </div>
+      </nav>
     </header>
 
     <%= yield %>
