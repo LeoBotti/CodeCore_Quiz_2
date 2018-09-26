@@ -1,13 +1,17 @@
 <h1>IDEAS</h1>
 
-<ul>
+<ul class='list-unstyled ml-3'>
   <% @ideas.each do |idea| %>
     <li>
       <%= link_to idea.title, idea_path(idea.id) %>
       <br />
+      <p>
+        <%= idea.description %>
+      </p>
       <small>
         Posted <%= time_ago_in_words(idea.created_at) %> ago
       </small>
+      <br/><br/>
     </li>
   <% end %>
 </ul>
