@@ -3,9 +3,11 @@
 <ul class='list-unstyled ml-3'>
   <% @ideas.each do |idea| %>
     <li>
+      <button class='plus'>+</button>
+      <button class='minus hide' >-</button>
       <%= link_to idea.title, idea_path(idea.id) %>
       <br />
-      <p>
+      <p class='description hide'>
         <%= idea.description %>
       </p>
       <small>
